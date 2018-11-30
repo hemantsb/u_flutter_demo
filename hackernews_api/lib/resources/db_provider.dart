@@ -1,3 +1,4 @@
+import 'package:hackernews_api/resources/repository.dart';
 import 'package:sqflite/sqflite.dart';
 import 'dart:io';
 import 'package:path/path.dart';
@@ -5,8 +6,12 @@ import 'package:path_provider/path_provider.dart';
 import 'dart:async';
 import '../model/item.dart';
 
-class DbProvider {
+class DbProvider implements Source, Cache {
   Database db;
+
+  DbProvider(){
+    init();
+  }
 
   void init() async {
     Directory documentDirectoty = await getApplicationDocumentsDirectory();
@@ -35,6 +40,10 @@ class DbProvider {
     });
   }
 
+  Future<List<int>> fetchTopIds() {
+    return null;
+  }
+
   Future<Item> fetchItem(int id) async {
     final map = await db.query(
       "Items",
@@ -54,3 +63,5 @@ class DbProvider {
     db.insert("Items", item.toMapForDb());
   }
 }
+
+DbProvider dbProvider = new DbProvider();
