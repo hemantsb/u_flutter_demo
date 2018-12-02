@@ -17,14 +17,14 @@ class Item {
 
   Item.fromJson(Map<String, dynamic> parsedJson)
       : id = parsedJson['id'],
-        deleted = parsedJson['deleted'],
+        deleted = parsedJson['deleted'] ?? false,
         type = parsedJson['type'],
         by = parsedJson['by'],
         time = parsedJson['time'],
-        text = parsedJson['text'],
-        dead = parsedJson['dead'],
+        text = parsedJson['text'] ?? "",
+        dead = parsedJson['dead'] ?? false,
         parent = parsedJson['parent'],
-        kids = parsedJson['kids'],
+        kids = parsedJson['kids'] ?? [],
         url = parsedJson['url'],
         score = parsedJson['score'],
         title = parsedJson['title'],
@@ -48,12 +48,12 @@ class Item {
   Map<String, dynamic> toMapForDb() {
     return <String, dynamic>{
       "id": id,
-      "deleted": deleted?1:0,
+      "deleted": deleted ? 1 : 0,
       "type": type,
       "by": by,
       "time": time,
       "text": text,
-      "dead": dead?1:0,
+      "dead": dead ? 1 : 0,
       "parent": parent,
       "kids": jsonEncode(kids),
       "url": url,
