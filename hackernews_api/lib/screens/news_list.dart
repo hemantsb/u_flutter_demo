@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../bloc/stories_provider.dart';
 import '../widget/NewsListTile.dart';
+import '../widget/refresh.dart';
 
 class NewList extends StatelessWidget {
   @override
@@ -25,12 +26,21 @@ class NewList extends StatelessWidget {
             );
           }
 
-          return ListView.builder(
-              itemCount: snapshot.data.length,
-              itemBuilder: (context, int index) {
-                bloc.fetchItem(snapshot.data[index]);
-                return NewsListTile(itemId: snapshot.data[index]);
-              });
+          return Refresh(
+            child: ListView.builder(
+                itemCount: snapshot.data.length,
+                itemBuilder: (context, int index) {
+                  bloc.fetchItem(snapshot.data[index]);
+                  return NewsListTile(itemId: snapshot.data[index]);
+                }),
+          );
+
+//          return ListView.builder(
+//              itemCount: snapshot.data.length,
+//              itemBuilder: (context, int index) {
+//                bloc.fetchItem(snapshot.data[index]);
+//                return NewsListTile(itemId: snapshot.data[index]);
+//              });
         });
   }
 }

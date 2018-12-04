@@ -9,7 +9,7 @@ import '../model/item.dart';
 class DbProvider implements Source, Cache {
   Database db;
 
-  DbProvider(){
+  DbProvider() {
     init();
   }
 
@@ -61,6 +61,10 @@ class DbProvider implements Source, Cache {
 
   Future<int> addItem(Item item) {
     db.insert("Items", item.toMapForDb());
+  }
+
+  Future<int> clear() {
+   return db.delete('items');
   }
 }
 
