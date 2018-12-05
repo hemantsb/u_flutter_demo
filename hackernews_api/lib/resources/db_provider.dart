@@ -60,7 +60,7 @@ class DbProvider implements Source, Cache {
   }
 
   Future<int> addItem(Item item) {
-    db.insert("Items", item.toMapForDb());
+    db.insert("Items", item.toMapForDb(), conflictAlgorithm: ConflictAlgorithm.replace);
   }
 
   Future<int> clear() {
