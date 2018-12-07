@@ -48,10 +48,9 @@ class DbProvider implements Source, Cache {
     final map = await db.query(
       "Items",
       columns: null,
-      where: "id=?",
+      where: "id = ?",
       whereArgs: [id],
     );
-
     if (map.length > 0) {
       return Item.fromDb(map.first);
     }
