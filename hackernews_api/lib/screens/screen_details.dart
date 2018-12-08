@@ -48,7 +48,7 @@ class ScreenDetails extends StatelessWidget {
     children.add(buildTitle(item));
 
     final itemChild = item.kids.map((kidsID) {
-      return CommentsWidget(itemID: kidsID, itemMap: snapshot);
+      return CommentsWidget(itemID: kidsID, itemMap: snapshot, depth:1);
     }).toList();
     children.addAll(itemChild);
 

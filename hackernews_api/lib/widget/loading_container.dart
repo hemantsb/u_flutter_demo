@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class DividerContainer extends StatelessWidget {
+class LoadingContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
